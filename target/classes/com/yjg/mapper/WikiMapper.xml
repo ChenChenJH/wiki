@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yjg.mapper.WikiMapper">
+	<!-- 查询 -->
+	<select id="selectAll" parameterType="java.util.Map" resultType="wiki">
+		SELECT * FROM wiki WHERE wiki.userId = #{userId} and wiki.appName LIKE '%${appName}%' 
+		LIMIT #{start},#{rows}
+	</select>
+	
+	<!-- 查询选择列表-->
+	<select id="selectList" parameterType="Integer" resultType="wiki">
+		SELECT * FROM wiki WHERE wiki.userId = #{userId} 
+	</select>
+	
+	<!-- 查询总数 -->
+	<select id="selectCount" parameterType="java.util.Map" resultType="Integer">
+		SELECT count(*) FROM wiki WHERE wiki.userId = #{userId} and wiki.appName LIKE '%${appName}%'
+	</select>
+
+	<!-- <select id="selectall" resultType="admin"> select * from admin order 
+		by id desc </select> <select id="isExist" parameterType="String" resultType="admin"> 
+		select * from admin where name=#{name} </select> <select id="selectCount" 
+		resultType="Integer"> select count(*) from admin </select> <select id="load" 
+		parameterType="Integer" resultType="admin"> select * from admin where id=#{id} 
+		</select> -->
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM wiki WHERE id = #{id}
+	</delete>
+	
+	<delete id="deleteByUserId" parameterType="Integer">
+		DELETE FROM wiki WHERE userId = #{userId}
+	</delete>
+	
+	<!-- 增加 -->
+	<insert id="insert" parameterType="wiki">
+		INSERT INTO
+		wiki(appName,appId,appSecret,userId)
+		VALUES (#{appName} , #{appId} ,
+		#{appSecret} , #{userId})
+	</insert>
+	<!--修改 -->
+	<update id="update" parameterType="wiki">
+		UPDATE wiki SET appName = #{appName},appId = #{appId},
+		appSecret = #{appSecret} WHERE id = #{id}
+	</update>
+</mapper>

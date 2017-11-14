@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yjg.mapper.DraftMapper">
+	
+	<!-- 查询列表 -->
+	<select id="getDraftList" parameterType="java.util.Map" resultType="draft">
+		SELECT * FROM draft WHERE draft.userId = #{userId} 
+		<if test="from != null and to != null">
+			and <![CDATA[UNIX_TIMESTAMP(date) > UNIX_TIMESTAMP('${from}') 
+			and UNIX_TIMESTAMP(date) < UNIX_TIMESTAMP('${to}')]]> 
+		</if> 
+		order by date desc
+		 limit #{start},#{rows}
+	</select>
+	
+	<!-- 查询总数 -->
+	<select id="count" parameterType="java.util.Map" resultType="Integer">
+		SELECT count(*) FROM draft WHERE draft.userId = #{userId} 
+		<if test="from != null and to != null">
+			and <![CDATA[UNIX_TIMESTAMP(date) > UNIX_TIMESTAMP('${from}') 
+			and UNIX_TIMESTAMP(date) < UNIX_TIMESTAMP('${to}')]]> 
+		</if>
+	</select>
+	
+	<!-- 查询一条 -->
+	<select id="getDraft" parameterType="Integer" resultType="draft">
+		SELECT * FROM draft WHERE draft.id = #{id}
+	</select>
+	
+	<!-- 插入草稿箱 -->
+	<insert id="insertDraft" parameterType="draft">
+		INSERT INTO draft(appList,title,author,articleUrl,summary,content,cover,date,userId)
+		VALUES (#{appList},#{title},#{author},#{articleUrl},#{summary},#{content},#{cover}
+		,#{date},#{userId})
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM draft WHERE id = #{id}
+	</delete>
+	
+	<!-- 按userId删除，消除关联关系 -->
+	<delete id="deleteByUserId" parameterType="Integer">
+		DELETE FROM draft WHERE userId = #{userId}
+	</delete>
+	
+	<!--修改一条 -->
+	<update id="updateDraft" parameterType="draft">
+		UPDATE draft SET appList = #{appList},title = #{title},author = #{author},
+		articleUrl = #{articleUrl},summary = #{summary},content = #{content},date = #{date}
+		<if test="cover != null and cover != ''">
+			,cover = #{cover} 
+		</if>
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

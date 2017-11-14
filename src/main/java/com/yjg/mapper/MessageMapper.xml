@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yjg.mapper.MessageMapper">
+	<!-- 插入-->
+	<insert id="insert" parameterType="message">
+		INSERT INTO message(appList,title,author,articleUrl,summary,content,cover,date,userId) 
+		VALUES (#{appList},#{title},#{author},#{articleUrl},#{summary},#{content},#{cover},#{date},#{userId})
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM message WHERE id = #{id}
+	</delete>
+	
+	<!-- 按userId删除，消除关联关系 -->
+	<delete id="deleteByUserId" parameterType="Integer">
+		DELETE FROM message WHERE userId = #{userId}
+	</delete>
+	
+	<!-- 查询总数 -->
+	<select id="count" parameterType="java.util.Map" resultType="Integer">
+		SELECT count(*) FROM message WHERE message.userId = #{userId} 
+		<if test="from != null and to != null">
+			and <![CDATA[UNIX_TIMESTAMP(date) > UNIX_TIMESTAMP('${from}') 
+			and UNIX_TIMESTAMP(date) < UNIX_TIMESTAMP('${to}')]]> 
+		</if>
+	</select>
+	
+	<!-- 查询已发记录 -->
+	<select id="getMessageList" parameterType="java.util.Map" resultType="message">
+		SELECT * FROM message WHERE message.userId = #{userId} 
+		<if test="from != null and to != null">
+			and <![CDATA[UNIX_TIMESTAMP(date) > UNIX_TIMESTAMP('${from}')
+			and UNIX_TIMESTAMP(date) < UNIX_TIMESTAMP('${to}')]]> 
+		</if>
+		order by date desc  limit #{start},#{rows}
+	</select>
+	
+	<!-- 查询一条 -->
+	<select id="getMessage" parameterType="Integer" resultType="message">
+		SELECT * FROM message WHERE message.id = #{id}
+	</select>
+	
+</mapper>

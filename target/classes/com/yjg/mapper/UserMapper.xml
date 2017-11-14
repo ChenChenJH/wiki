@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yjg.mapper.UserMapper">
+	<!-- 查询 -->
+	<select id="selectUser" parameterType="user" resultType="user">
+		SELECT * FROM user WHERE userName = #{userName}
+	</select>
+	
+	<select id="selectAdmin" parameterType="admin" resultType="admin">
+		SELECT * FROM admin WHERE adminName = #{adminName}
+	</select>
+	
+	<select id="count" resultType="Integer">
+		select count(*) from user
+	</select>
+	
+	<select id="selectAll" parameterType="java.util.Map" resultType="user">
+		SELECT * FROM user
+		<if test="userName != null and userName != ''">
+			where userName LIKE '%${userName}%'
+		</if>
+		<if test="start != null and rows != ''">
+			LIMIT #{start},#{rows}
+		</if>
+	</select>
+	
+	<select id="findByUserName" parameterType="String" resultType="user">
+		select * from user where userName = #{userName}
+	</select>
+	
+	<insert id="insert" parameterType="String">
+		INSERT INTO user(userName,pwd) VALUES(#{userName},#{pwd})
+	</insert>
+	
+	<update id="update" parameterType="user">
+		UPDATE user set userName = #{userName},pwd = #{pwd} WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteById" parameterType="Integer">
+		DELETE FROM user WHERE id = #{id}
+	</delete>
+	
+	<select id="userSearch" parameterType="String" resultType="user">
+		SELECT * FROM user WHERE userName = #{userName}
+	</select>
+	
+</mapper>

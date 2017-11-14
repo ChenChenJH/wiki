@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+    	<!-- <typeAlias type="com.cjh.entity.User" alias="user"/> -->
+    	<package name="com.yjg.entity"/>
+    </typeAliases>
+
+    <!-- mapping 文件路径配置 -->
+    <mappers>
+    	<!-- 整合spring并且配置扫描时这里不用配置 -->
+      <!--  <package name="com.cjh.mapper"/> -->
+    </mappers>
+</configuration>
