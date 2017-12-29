@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50556
+Source Server Version : 50525
 Source Host           : localhost:3306
 Source Database       : wiki
 
 Target Server Type    : MYSQL
-Target Server Version : 50556
+Target Server Version : 50525
 File Encoding         : 65001
 
-Date: 2017-11-23 15:37:33
+Date: 2017-11-08 11:05:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,7 +47,7 @@ CREATE TABLE `draft` (
   `date` varchar(40) DEFAULT NULL,
   `userId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of draft
@@ -62,12 +62,10 @@ INSERT INTO `draft` VALUES ('7', '测试7号/', '你好', 'li', 'www.icat.com', 
 INSERT INTO `draft` VALUES ('8', '测试2号/', '20171105', 'chen', 'www.icast.com', 'hello', 'hello java', 'upload/1509864856582.jpg', '2017-11-05 14:54:16', '1');
 INSERT INTO `draft` VALUES ('9', '真情科干/天天喝喝/', '201711052200', 'chen', 'www.baidu.com', 'hello', 'hello', 'upload/1509933334204.jpg', '2017-11-05 22:00:46', '1');
 INSERT INTO `draft` VALUES ('10', '纵梦广科/', '今天星期一', 'sdf', 'sdf', 'sdf', 'sdf', 'upload/1509933562178.jpg', '2017-11-06 09:59:22', '1');
-INSERT INTO `draft` VALUES ('11', '测试3号/测试4号/', '20171109945', 'chen', '就差一个了', 'sdf', 'sdf', 'upload/1510109170036.jpg', '2017-11-09 09:45:43', '1');
+INSERT INTO `draft` VALUES ('11', '测试3号/测试4号/', '201711081033', 'chen', '就差一个了', 'sdf', 'sdf', 'upload/1510109170036.jpg', '2017-11-08 10:33:26', '1');
 INSERT INTO `draft` VALUES ('12', '纵梦广科/', '睡觉3', 'sdf', 'sdf', 'sdf', 'sdfsd', 'upload/1509933334204.jpg', '2017-11-05 23:26:42', '1');
 INSERT INTO `draft` VALUES ('13', '测试2号/测试3号/', '准备睡觉了', 'chen', 'sdf', 'sdf', 'sdf', 'upload/1510109170036.jpg', '2017-11-05 23:25:21', '1');
 INSERT INTO `draft` VALUES ('14', '张大狼烧饼/', '卖饼', 'zhang', 'www.baidu.com', '四块钱一个', '快来快来', 'upload/1510109170036.jpg', '2017-11-08 10:46:53', '3');
-INSERT INTO `draft` VALUES ('15', '天天喝喝/', 'hello java', 'chen', 'www.kyzg.com', 'hello', 'hello', 'upload/1509933562178.jpg', '2017-11-09 11:36:16', '1');
-INSERT INTO `draft` VALUES ('16', '张大狼烧饼/', 'chen', 'chen', 'sdfad', 'hello', '<p>\r\n	今天是美好的一天\r\n</p>\r\n<p>\r\n	<img src=\"/wiki/upload/image/20171110/20171110155950_470.png\" alt=\"\" />\r\n</p>\r\n<p>\r\n	dsfsdfds\r\n</p>', 'upload/1510300807270.jpg', '2017-11-10 16:00:07', '3');
 
 -- ----------------------------
 -- Table structure for `message`
@@ -124,12 +122,12 @@ CREATE TABLE `wiki` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UQ_appId` (`appId`),
   UNIQUE KEY `UQ_appName` (`appName`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wiki
 -- ----------------------------
-INSERT INTO `wiki` VALUES ('1', '真情科干', '123', '1234564', '1');
+INSERT INTO `wiki` VALUES ('1', '真情科干', '123', '123456', '1');
 INSERT INTO `wiki` VALUES ('2', '天天喝喝', '1234', '456', '1');
 INSERT INTO `wiki` VALUES ('3', '纵梦广科', '7498', '467', '1');
 INSERT INTO `wiki` VALUES ('4', '爱在吴川', '12345', '01041504', '2');
@@ -140,5 +138,4 @@ INSERT INTO `wiki` VALUES ('8', '测试4号', '02165', '16415', '1');
 INSERT INTO `wiki` VALUES ('9', '测试5号', '015468', '154871', '1');
 INSERT INTO `wiki` VALUES ('10', '测试6号', '154855', '15481', '1');
 INSERT INTO `wiki` VALUES ('11', '测试7号', '488751', '15456', '1');
-INSERT INTO `wiki` VALUES ('12', '张大狼烧饼', '156424545', '154265445', '3');
-INSERT INTO `wiki` VALUES ('14', '测试8号', '15654245', '15461245', '1');
+INSERT INTO `wiki` VALUES ('13', '张大狼烧饼', '156424545', '154265445', '3');
